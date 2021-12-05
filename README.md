@@ -1,2 +1,2 @@
 # GBi-Net
-Codes for GBi-Net will be released here.
+Codes and trained models for GBi-Net will be released here.
