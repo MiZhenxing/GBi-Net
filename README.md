@@ -2,6 +2,8 @@
 Codes and trained models for GBi-Net will be released here.
 
 Cite
+
+```
 @misc{mi2021generalized,
       title={Generalized Binary Search Network for Highly-Efficient Multi-View Stereo}, 
       author={Zhenxing Mi and Di Chang and Dan Xu},
@@ -10,3 +12,4 @@ Cite
       archivePrefix={arXiv},
       primaryClass={cs.CV}
 }
+```
