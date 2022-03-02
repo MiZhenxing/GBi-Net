@@ -8,6 +8,6 @@ Cite
       title={Generalized Binary Search Network for Highly-Efficient Multi-View Stereo}, 
       author={Zhenxing Mi and Di Chang and Dan Xu},
       booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-      year={2021}
+      year={2022}
 }
 ```
