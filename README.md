@@ -1,15 +1,13 @@
 # GBi-Net
-Codes and trained models for GBi-Net will be released here.
+Codes and trained models for our CVPR2022 paper GBi-Net will be released here.
 
 Cite
 
 ```
-@misc{mi2021generalized,
+@inproceedings{mi2021generalized,
       title={Generalized Binary Search Network for Highly-Efficient Multi-View Stereo}, 
       author={Zhenxing Mi and Di Chang and Dan Xu},
-      year={2021},
-      eprint={2112.02338},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+      booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+      year={2021}
 }
 ```
