@@ -1,0 +1,148 @@
+output_dir: "exps/test_tanks_advanced"
+true_gpu: "2"
+gpu: [0]
+random_seed: 0
+auto_resume: True
+master_port: "11322"
+model_file: "gbinet_clean"
+model_name: "GBiNet"
+test_func_name: "test_model_stage_profile"
+dataset: "general_eval"
+max_depth: 8
+model_path: "checkpoints/blended.ckpt"
+data_name: "tanks"
+img_mean: [0.5, 0.5, 0.5]
+img_std: [0.5, 0.5, 0.5]
+
+model:
+  is_stage: True
+  stage_num: 4
+  output_channels: [64, 32, 16, 8]
+  group_nums: [8, 8, 8, 4]
+  feat_name: "DeformStageNet"
+  use_3dbn: True
+  stage_info:
+    scale:
+      "0": 0.125
+      "1": 0.25
+      "2": 0.5
+      "3": 1.0
+    depth2stage:
+      "1": 0
+      "2": 0
+      "3": 1
+      "4": 1
+      "5": 2
+      "6": 2
+      "7": 3
+      "8": 3
+      "9": 3 # needed and invalid, just for checking
+
+test:
+  batch_size: 1
+  log_period: 20
+  test_metric: "thres2mm_accu"
+
+data:
+  num_workers: 4
+  test:
+    root_dir: "data/tankandtemples/advanced"
+    num_view: 7
+    interval_scale: 1.0 # disabled for advanced
+    num_depth: 256 # disabled for advanced
+    listfile:  "lists/tanks/tanks_advanced.txt"
+    out_scale: 1.0
+    self_norm: False
+    color_mode: null
+    with_gt: False
+    max_h: null
+    max_w: null
+    base_image_size: 64
+    use_cam_max: True # disable num_depth and interval_scale
+    is_clean: True
+    out_depths: [8]
+    prob_out_depths: [1, 2, 3, 4, 5, 6, 7, 8]
+    save_depths: [8]
+    prob_depth: 6
+
+# no_testing: False
+
+fusion:
+  name: "xy_filter_per"
+  xy_filter_per:
+    nprocs: 2
+    global_pair: False
+    para_num: 1
+    para_tag: [0]
+    output_dir: "exps/test_tanks_advanced/xy_filter"
+    Family:
+      prob_threshold: [0.85]
+      num_consistent: [5]
+      img_dist_thresh: [2.0]
+      depth_thresh: [0.005]
+    Francis:
+      prob_threshold: [0.8]
+      num_consistent: [8]
+      img_dist_thresh: [2.0]
+      depth_thresh: [0.0025]
+    Horse:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [4.0]
+      depth_thresh: [0.02]
+    Lighthouse:
+      prob_threshold: [0.6]
+      num_consistent: [7]
+      img_dist_thresh: [3.0]
+      depth_thresh: [0.005]
+    M60:
+      prob_threshold: [0.85]
+      num_consistent: [5]
+      img_dist_thresh: [2.0]
+      depth_thresh: [0.0025]
+    Panther:
+      prob_threshold: [0.9]
+      num_consistent: [6]
+      img_dist_thresh: [4.0]
+      depth_thresh: [0.005]
+    Playground:
+      prob_threshold: [0.85]
+      num_consistent: [7]
+      img_dist_thresh: [3.0]
+      depth_thresh: [0.005]
+    Train:
+      prob_threshold: [0.85]
+      num_consistent: [6]
+      img_dist_thresh: [2.5]
+      depth_thresh: [0.005]
+
+    Auditorium:
+      prob_threshold: [0.8]
+      num_consistent: [1]
+      img_dist_thresh: [2.5]
+      depth_thresh: [0.02]
+    Ballroom:
+      prob_threshold: [0.85]
+      num_consistent: [3]
+      img_dist_thresh: [2.5]
+      depth_thresh: [0.01]
+    Courtroom:
+      prob_threshold: [0.85]
+      num_consistent: [2]
+      img_dist_thresh: [2.5]
+      depth_thresh: [0.02]
+    Museum:
+      prob_threshold: [0.85]
+      num_consistent: [4]
+      img_dist_thresh: [2.5]
+      depth_thresh: [0.01]
+    Palace:
+      prob_threshold: [0.85]
+      num_consistent: [4]
+      img_dist_thresh: [2.5]
+      depth_thresh: [0.01]
+    Temple:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [2.5]
+      depth_thresh: [0.01]

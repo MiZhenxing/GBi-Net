@@ -1,0 +1,186 @@
+output_dir: "exps/test_dtu"
+true_gpu: "1"
+gpu: [0]
+random_seed: 0
+auto_resume: True
+master_port: "11321"
+model_file: "gbinet_clean"
+model_name: "GBiNet"
+test_func_name: "test_model_stage_profile"
+dataset: "dtu_yao_eval"
+max_depth: 8
+model_path: "checkpoints/dtu.ckpt"
+img_mean: [0.5, 0.5, 0.5]
+img_std: [0.5, 0.5, 0.5]
+
+model:
+  is_stage: True
+  stage_num: 4
+  output_channels: [64, 32, 16, 8]
+  group_nums: [8, 8, 8, 4]
+  feat_name: "DeformStageNet"
+  use_3dbn: True
+  stage_info:
+    scale:
+      "0": 0.125
+      "1": 0.25
+      "2": 0.5
+      "3": 1.0
+    depth2stage:
+      "1": 0
+      "2": 0
+      "3": 1
+      "4": 1
+      "5": 2
+      "6": 2
+      "7": 3
+      "8": 3
+      "9": 3 # needed and invalid, just for checking
+
+test:
+  batch_size: 1
+  log_period: 20
+  test_metric: "thres2mm_accu"
+
+data:
+  num_workers: 4
+  test:
+    root_dir: "data/dtu"
+    num_view: 5
+    interval_scale: 0.8
+    num_depth: 256
+    listfile:  "lists/dtu/test.txt"
+    out_scale: 1.0
+    self_norm: False
+    color_mode: null
+    with_gt: False
+    max_h: null
+    max_w: null
+    base_image_size: 64
+    is_clean: True
+    out_depths: [8]
+    prob_out_depths: [1, 2, 3, 4, 5, 6, 7, 8]
+    save_depths: [8]
+    prob_depth: 6
+
+# no_testing: True
+# no_fusion: True
+
+fusion:
+  name: "xy_filter_per"
+  xy_filter_per:
+    nprocs: 2
+    global_pair: True
+    para_num: 1
+    para_tag: [0]
+    output_dir: "exps/test_dtu/xy_filter"
+    scan1:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.5]
+      depth_thresh: [0.01]
+    scan4:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.5]
+      depth_thresh: [0.01]
+    scan9:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan10:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan11:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.5]
+      depth_thresh: [0.01]
+    scan12:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan13:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.75]
+      depth_thresh: [0.01]
+    scan15:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan23:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan24:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.5]
+      depth_thresh: [0.01]
+    scan29:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.5]
+      depth_thresh: [0.01]
+    scan32:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan33:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.5]
+      depth_thresh: [0.01]
+    scan34:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan48:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.5]
+      depth_thresh: [0.01]
+    scan49:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan62:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.5]
+      depth_thresh: [0.01]
+    scan75:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan77:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan110:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.25]
+      depth_thresh: [0.01]
+    scan114:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.5]
+      depth_thresh: [0.01]
+    scan118:
+      prob_threshold: [0.8]
+      num_consistent: [3]
+      img_dist_thresh: [0.75]
+      depth_thresh: [0.01]

@@ -1,0 +1,82 @@
+output_dir: "exps/train_blended"
+true_gpu: "6, 7"
+gpu: [0, 1]
+random_seed: 0
+auto_resume: True
+master_port: "11324"
+model_file: "gbinet"
+model_name: "GBiNet"
+dataset: "blendedmvs"
+max_depth: 8
+find_unused_parameters: True
+img_mean: [0.5, 0.5, 0.5]
+img_std: [0.5, 0.5, 0.5]
+
+model:
+  is_stage: True
+  stage_num: 4
+  output_channels: [64, 32, 16, 8]
+  group_nums: [8, 8, 8, 4]
+  feat_name: "DeformStageNet"
+  use_3dbn: True
+  stage_info:
+    scale:
+      "0": 0.125
+      "1": 0.25
+      "2": 0.5
+      "3": 1.0
+    depth2stage:
+      "1": 0
+      "2": 0
+      "3": 1
+      "4": 1
+      "5": 2
+      "6": 2
+      "7": 3
+      "8": 3
+      "9": 3 # needed and invalid, just for checking
+
+scheduler:
+  name: "multi_step"
+  milestones: [10, 12, 14]
+  gamma: 0.5
+
+solver:
+  name: "adam"
+  base_lr: 1.e-4
+  weight_decay: 0.0
+  betas: [0.9, 0.999]
+
+train:
+  batch_size: 2
+  checkpoint_period: 1
+  log_period: 10
+  val_period: 1
+  max_epoch: 16
+  val_metric: "thres2mm_accu"
+
+val:
+  batch_size: 2
+  log_period: 10
+  
+data:
+  num_workers: 4
+  out_scale: 1.0
+  train:
+    root_dir: "data/BlendedMVS/low_res"
+    num_view: 5
+    interval_scale: 1.0
+    num_depth: 128
+    self_norm: False
+    color_mode: null
+    random_view: True
+    listfile:  "lists/BlendedMVS/BlendedMVS_training.txt"
+  val:
+    dataset: "dtu_yao"
+    root_dir: "data/dtu"
+    num_view: 5
+    interval_scale: 0.8
+    num_depth: 256
+    self_norm: False
+    color_mode: null
+    listfile: "lists/dtu/val.txt"
