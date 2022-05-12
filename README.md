@@ -1,4 +1,4 @@
-<br />
+<!-- <br />
 <div align="center">
   <h1 align="center">Generalized Binary Search Network for Highly-Efficient Multi-View Stereo</h1>
 
@@ -14,13 +14,18 @@
     <a href="https://arxiv.org/abs/2112.02338">Arxiv</a> | <a href="https://mizhenxing.github.io/gbinet">Project page</a>
     <br />
   </p>
-</div>
+</div> -->
+
+
+# Generalized Binary Search Network for Highly-Efficient Multi-View Stereo
+
+### [Arxiv](https://arxiv.org/abs/2112.02338) | [Project Page](https://mizhenxing.github.io/gbinet)
 
 ## Introduction
 
 This is the official pytorch implementation of our CVPR2022 paper: Generalized Binary Search Network for Highly-Efficient Multi-View Stereo. In this work, we propose a novel method for highly efficient MVS that remarkably decreases the memory footprint, meanwhile clearly advancing state-of-the-art depth prediction performance. We investigate what a search strategy can be reasonably optimal for MVS taking into account of both efficiency and effectiveness. We first formulate MVS as a binary search problem, and accordingly propose a generalized binary search network for MVS. Specifically, in each step, the depth range is split into 2 bins with extra 1 error tolerance bin on both sides. A classification is performed to identify which bin contains the true depth. We also design three mechanisms to respectively handle classification errors, deal with out-of-range samples and decrease the training memory. The new formulation makes our method only sample a very small number of depth hypotheses in each step, which is highly memory efficient, and also greatly facilitates quick training convergence.
 
-![](media/gbinet_pipeline.png)
+![](media/figure1.png)
 
 ## Installation
 
