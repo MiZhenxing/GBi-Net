@@ -17,7 +17,7 @@
 </div> -->
 
 
-# Generalized Binary Search Network for Highly-Efficient Multi-View Stereo
+# Generalized Binary Search Network for Highly-Efficient Multi-View Stereo (CVPR 2022)
 
 ### [Arxiv](https://arxiv.org/abs/2112.02338) | [Project Page](https://mizhenxing.github.io/gbinet)
 
